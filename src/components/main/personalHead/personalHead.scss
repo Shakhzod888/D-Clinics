@@ -1,0 +1,40 @@
+.main-color {
+  color: red;
+}
+
+nav {
+  margin: 20px 60px 30px;
+
+  a {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.name {
+  color: #1f92bf;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+// .mw-120 {
+//   position: absolute;
+//   top: 40%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 91.8%;
+//   height: 350px;
+
+//   .person {
+//     width: 120px;
+//     height: 120px;
+//     border-radius: 5px 5px 0px 0px;
+//     top: 190px;
+//     right: 620px;
+//   }
+// }
+
+.mw-120 {
+  display: flex;
+  justify-content: center;
+}
