@@ -1,10 +1,10 @@
 import React from "react";
 import PersonalHead from "./personalHead/personalHead";
 import MainBody from "./mainBody/mainBody";
-function Basic() {
+function Wrap() {
   return (
     <>
-      <div className="lllt">
+      <div className="">
         <PersonalHead />
         <MainBody />
       </div>
@@ -12,4 +12,4 @@ function Basic() {
   );
 }
 
-export default Basic;
+export default Wrap;

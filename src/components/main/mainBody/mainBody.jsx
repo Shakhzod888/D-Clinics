@@ -1,5 +1,5 @@
 import React from "react";
-import Categories from "./categories/categories";
+import Categories from "../categories/categories";
 function MainBody() {
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Category_1 from "../assets/category_1.png";
 import "../categories/categories.scss";
+import Basic from "../../pages/basic/basic";
 function Categories() {
   const [activeTab, setActiveTab] = useState("pills-home");
 
@@ -84,7 +84,7 @@ function Categories() {
           role="tabpanel"
           aria-labelledby="pills-home-tab"
         >
-          ... Главная ...
+          <Basic />
         </div>
         <div
           className={`tab-pane fade ${

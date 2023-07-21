@@ -1,9 +1,9 @@
 import React from "react";
-import Basic from "./main/basic";
+import Wrap from "./main/wrap";
 function Index() {
   return (
     <>
-      <Basic />
+      <Wrap />
     </>
   );
 }
