@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 
 function ExpenditureTab() {
-  const [activeTab, setActiveTab] = useState("pills-home");
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
   return (
     <>
       <div className="shadow basic_2 shadow-lg bg-body rounded">
