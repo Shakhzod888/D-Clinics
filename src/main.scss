@@ -45,3 +45,25 @@ body {
 .weap {
   padding-bottom: 50px;
 }
+
+.ddl {
+  // padding: 20px 20px 0 20px;
+  flex-wrap: wrap;
+  position: relative;
+  top: 40px;
+  padding: 20px;
+  p {
+    position: relative;
+    top: 6px;
+  }
+
+  .number {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: none;
+    border: solid 1px #d4d8dd;
+  }
+}

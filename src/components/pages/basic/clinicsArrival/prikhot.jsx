@@ -1,11 +1,15 @@
 import React from "react";
 import Eye from "../assets/eye.png";
 import Lists from "../list.json";
+
 function Prikhot() {
   const date = new Date();
   const day = date.getDate();
-  const month = date.getMonth() + 1; // Months are zero-based (January is 0)
+  const month = date.getMonth() + 1;
   const year = date.getFullYear();
+
+  const [listNumber, setListNumber] = React.useState(10);
+
   return (
     <>
       <div className="shadow basic_2 shadow-lg bg-body rounded">
@@ -61,8 +65,23 @@ function Prikhot() {
             </div>
           </div>
         </div>
+        <div className="ddl d-flex justify-content-between align-items-center ">
+          <div className="d-flex justify-content-center gap-3 align-items-center flex-wrap">
+            <p className="align-items-center">Показать записи</p>
+            <input
+              className="number"
+              id="number"
+              type="number"
+              value={listNumber}
+              onChange={(e) => setListNumber(parseInt(e.target.value))}
+            />
+          </div>
+          <div>
+            <input type="text" />
+          </div>
+        </div>
         <div className="mt-5">
-          <table class="table table-bordered">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th className="p-2 bg-secondary text-white" scope="col">
@@ -75,25 +94,25 @@ function Prikhot() {
                   ДИЛЕР
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДОГОВОР
+                  ДЕЙСТВИЕ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ЕД. ИЗМЕРЕНИЯ
+                  ДЕЙСТВИЕ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  КОЛИЧ.
+                  ДЕЙСТВИЕ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  КОЛ. ВЗЯТОГО{" "}
+                  ДЕЙСТВИЕ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  КОЛ. ОСТАТОК
+                  ДЕЙСТВИЕ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  КОЛ. ВОЗВРАТА
+                  ДЕЙСТВИЕ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДАТА
+                  ДЕЙСТВИЕ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
                   ДЕЙСТВИЕ
@@ -101,27 +120,25 @@ function Prikhot() {
               </tr>
             </thead>
             <tbody>
-              {Lists.map((list) => {
-                return (
-                  <tr key={list.id}>
-                    <th scope="row">{list.id}</th>
-                    <td className="text-primary">{list.name}</td>
-                    <td className="text-primary">{list.dealer}</td>
-                    <td className="text-primary">{list.contract}</td>
-                    <td>{list.ed_measurements}</td>
-                    <td>{list.quantity}</td>
-                    <td>{list.qty_taken}</td>
-                    <td>{list.qty_remainder}</td>
-                    <td>{list.qty_return}</td>
-                    <td>
-                      {day}.{month}.{year}
-                    </td>
-                    <td>
-                      <img src={Eye} alt="" />
-                    </td>
-                  </tr>
-                );
-              })}
+              {Lists.slice(0, listNumber).map((list, index) => (
+                <tr key={list.id}>
+                  <th scope="row">{index + 1}</th>
+                  <td className="text-primary">{list.name}</td>
+                  <td className="text-primary">{list.dealer}</td>
+                  <td className="text-primary">{list.contract}</td>
+                  <td>{list.ed_measurements}</td>
+                  <td>{list.quantity}</td>
+                  <td>{list.qty_taken}</td>
+                  <td>{list.qty_remainder}</td>
+                  <td>{list.qty_return}</td>
+                  <td>
+                    {day}.{month}.{year}
+                  </td>
+                  <td>
+                    <img src={Eye} alt="" />
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
