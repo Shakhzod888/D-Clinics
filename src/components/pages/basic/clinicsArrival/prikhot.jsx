@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Eye from "../assets/eye.png";
 import Lists from "../list.json";
 
@@ -8,8 +8,27 @@ function Prikhot() {
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
 
-  const [listNumber, setListNumber] = React.useState(10);
+  const [listNumber, setListNumber] = useState(10);
+  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
 
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setListNumber(10); // Reset listNumber to 10 when search query changes
+  };
+
+  // Filter the data based on the search query
+  const filteredLists = Lists.filter(
+    (list) => list.contract.toLowerCase().includes(searchQuery.toLowerCase()) // Search by "ДОГОВОР" column
+  );
+
+  // Pagination Logic
+  const totalRecords = filteredLists.length;
+  const totalPages = Math.ceil(totalRecords / 10);
+
+  const handlePageChange = (page) => {
+    const startIndex = (page - 1) * 10;
+    setListNumber(startIndex + 10);
+  };
   return (
     <>
       <div className="shadow basic_2 shadow-lg bg-body rounded">
@@ -76,11 +95,21 @@ function Prikhot() {
               onChange={(e) => setListNumber(parseInt(e.target.value))}
             />
           </div>
-          <div>
-            <input type="text" />
+          <div className="d-flex  gap-5 ">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Поиск по ДОГОВОРУ"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <button className="btn shadow btn-primary ">Экспорт</button>
+            <button className="btn shadow btn-primary w-100">
+              + Добавить приход
+            </button>
           </div>
         </div>
-        <div className="mt-5">
+        <div className="mt-5 p-3">
           <table className="table table-bordered">
             <thead>
               <tr>
@@ -94,25 +123,25 @@ function Prikhot() {
                   ДИЛЕР
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДЕЙСТВИЕ
+                  ДОГОВОР
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДЕЙСТВИЕ
+                  ЕД. ИЗМЕРЕНИЯ
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДЕЙСТВИЕ
+                  КОЛИЧ.
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДЕЙСТВИЕ
+                  КОЛ. ВЗЯТОГО
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДЕЙСТВИЕ
+                  КОЛ. ОСТАТОК
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДЕЙСТВИЕ
+                  КОЛ. ВОЗВРАТА
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
-                  ДЕЙСТВИЕ
+                  ДАТА
                 </th>
                 <th className="p-2 bg-secondary text-white" scope="col">
                   ДЕЙСТВИЕ
@@ -141,6 +170,61 @@ function Prikhot() {
               ))}
             </tbody>
           </table>
+          <div className="d-flex flex-wrap">
+            <p>
+              Показано от 1 до {listNumber} из {Lists.length} записей
+            </p>
+
+            <nav aria-label="...">
+              <ul className="pagination d-flex gap-3">
+                <li
+                  className={`page-item  ${
+                    listNumber === 10 ? "disabled" : ""
+                  }`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() =>
+                      handlePageChange(Math.ceil(listNumber / 10) - 1)
+                    }
+                  >
+                    Предыдущий
+                  </button>
+                </li>
+                {[...Array(totalPages)].map((_, index) => (
+                  <li
+                    key={index}
+                    className={`page-item ${
+                      listNumber > index * 10 && listNumber <= (index + 1) * 10
+                        ? "active"
+                        : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageChange(index + 1)}
+                    >
+                      {index + 1}
+                    </button>
+                  </li>
+                ))}
+                <li
+                  className={`page-item ${
+                    listNumber === totalRecords ? "disabled" : ""
+                  }`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() =>
+                      handlePageChange(Math.ceil(listNumber / 10) + 1)
+                    }
+                  >
+                    Следующий
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </>
