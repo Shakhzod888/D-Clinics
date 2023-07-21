@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Expenditure from "./expenditure/expenditure";
+import Prikhot from "./clinicsArrival/prikhot";
 
 function Basic() {
   const [activeTab, setActiveTab] = useState("pills-home");
@@ -10,15 +12,13 @@ function Basic() {
   return (
     <div className="shadow basic shadow-lg bg-body rounded">
       <ul
-        className="nav categories nav-pills mb-3"
+        className="nav tips d-flex nav-pills mb-3 justify-content-start "
         id="pills-tab"
         role="tablist"
       >
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link  ${
-              activeTab === "pills-home" ? "active shadow  " : ""
-            }`}
+            className={`btn ${activeTab === "pills-home" ? "btn-main" : ""}`}
             onClick={() => handleTabClick("pills-home")}
           >
             Приход
@@ -26,16 +26,14 @@ function Basic() {
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link ${
-              activeTab === "pills-stock" ? "active shadow" : ""
-            }`}
+            className={`btn ${activeTab === "pills-stock" ? "btn-main" : ""}`}
             onClick={() => handleTabClick("pills-stock")}
           >
             Расход
           </button>
         </li>
       </ul>
-      <button className="btn btn-primary">Button test</button>
+
       <div className="tab-content" id="pills-tabContent">
         <div
           className={`tab-pane fade ${
@@ -45,7 +43,7 @@ function Basic() {
           role="tabpanel"
           aria-labelledby="pills-home-tab"
         >
-          ..basic
+          <Prikhot />
         </div>
         <div
           className={`tab-pane fade ${
@@ -55,7 +53,7 @@ function Basic() {
           role="tabpanel"
           aria-labelledby="pills-stock-tab"
         >
-          ... Склады ...
+          <Expenditure />
         </div>
       </div>
     </div>

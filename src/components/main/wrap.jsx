@@ -4,7 +4,7 @@ import MainBody from "./mainBody/mainBody";
 function Wrap() {
   return (
     <>
-      <div className="">
+      <div className="weap">
         <PersonalHead />
         <MainBody />
       </div>
