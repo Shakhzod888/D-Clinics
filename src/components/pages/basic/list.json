@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "Парецатамол ",
+    "dealer": "ООО “My Pharm”",
+    "contract": "C10001",
+    "ed_measurements": "5 лист / Коробка",
+    "quantity": 100,
+    "qty_taken": 100,
+    "qty_remainder": 0,
+    "qty_return": 0
+  }
+]
