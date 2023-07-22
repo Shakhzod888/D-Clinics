@@ -60,6 +60,7 @@ function Prikhot() {
                 onClick={() => handleToggleModal(1)}
               ></button>
             </div>
+
             <table className="table table-bordered">
               <thead>
                 <tr>
@@ -96,6 +97,9 @@ function Prikhot() {
                   <th className="p-2 bg-secondary text-white" scope="col">
                     ДЕЙСТВИЕ
                   </th>
+                  <th className="p-2 bg-secondary text-white" scope="col">
+                    ДЕЙСТВИЕ
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -120,6 +124,9 @@ function Prikhot() {
                     <td>{list.qty_return}</td>
                     <td>
                       {day}.{month}.{year}
+                    </td>
+                    <td>
+                      <img src={Eye} alt="" />
                     </td>
                     <td>
                       <img src={Eye} alt="" />
@@ -354,7 +361,7 @@ function Prikhot() {
           </div>
 
           <Modal
-            name={clickedItemName}
+            name={`Медикамент : ${clickedItemName}`}
             showModal={showModal1}
             handleToggleModal={() => handleToggleModal(1)}
           />
