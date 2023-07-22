@@ -9,19 +9,18 @@ function Prikhot() {
   const year = date.getFullYear();
 
   const [listNumber, setListNumber] = useState(10);
-  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showModal1, setShowModal1] = useState(false);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setListNumber(10); // Reset listNumber to 10 when search query changes
+    setListNumber(10);
   };
 
-  // Filter the data based on the search query
-  const filteredLists = Lists.filter(
-    (list) => list.contract.toLowerCase().includes(searchQuery.toLowerCase()) // Search by "ДОГОВОР" column
+  const filteredLists = Lists.filter((list) =>
+    list.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Pagination Logic
   const totalRecords = filteredLists.length;
   const totalPages = Math.ceil(totalRecords / 10);
 
@@ -29,6 +28,56 @@ function Prikhot() {
     const startIndex = (page - 1) * 10;
     setListNumber(startIndex + 10);
   };
+
+  const handleToggleModal = (modalNumber) => {
+    if (modalNumber === 1) {
+      setShowModal1(!showModal1);
+    }
+  };
+
+  function Modal() {
+    return (
+      <div
+        className={`modal fade ${showModal1 ? "show" : ""}`}
+        id="exampleModalToggle1"
+        aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel1"
+        tabIndex="-1"
+        style={{ display: showModal1 ? "block" : "none" }}
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalToggleLabel1">
+                Modal 1
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                onClick={() => handleToggleModal(1)}
+              ></button>
+            </div>
+            <div className="modal-body">
+              Show a second modal and hide this one with the button below.
+            </div>
+            <div className="modal-footer">
+              <button
+                className="btn btn-primary"
+                data-bs-target="#exampleModalToggle2"
+                data-bs-toggle="modal"
+                data-bs-dismiss="modal"
+              >
+                Open second modal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="shadow basic_2 shadow-lg bg-body rounded">
@@ -99,7 +148,7 @@ function Prikhot() {
             <input
               type="text"
               className="form-control"
-              placeholder="Поиск по ДОГОВОРУ"
+              placeholder="Поиск по НАИМЕНОВАНИЕ"
               value={searchQuery}
               onChange={handleSearchChange}
             />
@@ -152,7 +201,12 @@ function Prikhot() {
               {Lists.slice(0, listNumber).map((list, index) => (
                 <tr key={list.id}>
                   <th scope="row">{index + 1}</th>
-                  <td className="text-primary">{list.name}</td>
+                  <td
+                    onClick={() => handleToggleModal(1)}
+                    className="text-primary"
+                  >
+                    {list.name}
+                  </td>
                   <td className="text-primary">{list.dealer}</td>
                   <td className="text-primary">{list.contract}</td>
                   <td>{list.ed_measurements}</td>
@@ -170,12 +224,14 @@ function Prikhot() {
               ))}
             </tbody>
           </table>
-          <div className="d-flex flex-wrap">
-            <p>
-              Показано от 1 до {listNumber} из {Lists.length} записей
-            </p>
-
-            <nav aria-label="...">
+          <div className=" ">
+            <nav
+              aria-label="..."
+              className="d-flex flex-wrap justify-content-around align-items-center"
+            >
+              <p>
+                Показано от 1 до {listNumber} из {Lists.length} записей
+              </p>
               <ul className="pagination d-flex gap-3">
                 <li
                   className={`page-item  ${
@@ -225,6 +281,46 @@ function Prikhot() {
               </ul>
             </nav>
           </div>
+          {/* modal */}
+          {/* <div
+            className={`modal fade ${showModal1 ? "show" : ""}`}
+            id="exampleModalToggle1"
+            aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel1"
+            tabIndex="-1"
+            style={{ display: showModal1 ? "block" : "none" }}
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalToggleLabel1">
+                    Modal 1
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    onClick={() => handleToggleModal(1)}
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  Show a second modal and hide this one with the button below.
+                </div>
+                <div className="modal-footer">
+                  <button
+                    className="btn btn-primary"
+                    data-bs-target="#exampleModalToggle2"
+                    data-bs-toggle="modal"
+                    data-bs-dismiss="modal"
+                  >
+                    Open second modal
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div> */}
+          <Modal />
         </div>
       </div>
     </>
