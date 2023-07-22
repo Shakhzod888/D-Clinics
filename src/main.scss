@@ -24,13 +24,15 @@ body {
   padding-bottom: 30px;
 }
 
-.basic_2 {
+.basic_4 {
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
   width: 96%;
-  height: auto;
+  height: 400px;
+  margin: 30px;
+  margin-bottom: 80px;
 }
 
 .basic_3 {
@@ -40,6 +42,14 @@ body {
   margin-top: 40px;
   width: 96%;
   height: 500px;
+}
+.basic_2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 96%;
+  height: auto;
 }
 
 .weap {

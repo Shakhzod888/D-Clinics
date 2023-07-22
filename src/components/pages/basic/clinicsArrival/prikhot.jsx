@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Eye from "../assets/eye.png";
+import Editor from "../assets/editer.png";
 import Lists from "../list.json";
+import Medication from "../medication.json";
 
 function Prikhot() {
   const date = new Date();
@@ -46,7 +48,7 @@ function Prikhot() {
         tabIndex="-1"
         style={{ display: showModal ? "block" : "none" }}
       >
-        <div className="modal-dialog modal-dialog modal-xl modal-dialog-centered">
+        <div className="modal-dialog modal-dialog modal-xl modal-dialog-centered ">
           <div className="modal-content">
             <div className="modal-header">
               <p className="modal-title" id="exampleModalToggleLabel1">
@@ -61,93 +63,85 @@ function Prikhot() {
               ></button>
             </div>
 
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    N
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    НАИМЕНОВАНИЕ
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    ДИЛЕР
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    ДОГОВОР
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    ЕД. ИЗМЕРЕНИЯ
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    КОЛИЧ.
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    КОЛ. ВЗЯТОГО
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    КОЛ. ОСТАТОК
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    КОЛ. ВОЗВРАТА
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    ДАТА
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    ДЕЙСТВИЕ
-                  </th>
-                  <th className="p-2 bg-secondary text-white" scope="col">
-                    ДЕЙСТВИЕ
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {Lists.slice(0, listNumber).map((list, index) => (
-                  <tr key={list.id}>
-                    <th scope="row">{index + 1}</th>
-                    <td
-                      onClick={() => {
-                        setClickedItemName(list.name);
-                        handleToggleModal(1);
-                      }}
-                      className="text-primary"
-                    >
-                      {list.name}
-                    </td>
-                    <td className="text-primary">{list.dealer}</td>
-                    <td className="text-primary">{list.contract}</td>
-                    <td>{list.ed_measurements}</td>
-                    <td>{list.quantity}</td>
-                    <td>{list.qty_taken}</td>
-                    <td>{list.qty_remainder}</td>
-                    <td>{list.qty_return}</td>
-                    <td>
-                      {day}.{month}.{year}
-                    </td>
-                    <td>
-                      <img src={Eye} alt="" />
-                    </td>
-                    <td>
-                      <img src={Eye} alt="" />
-                    </td>
+            <div className="modal-dialog-centered shadow basic_4 shadow-lg bg-body ">
+              <table className="table m-4 table-bordered">
+                <thead>
+                  <tr>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      N
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      НАИМЕНОВАНИЕ
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      ДИЛЕР
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      ДОГОВОР
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      ЕД. ИЗМЕРЕНИЯ
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      КОЛИЧ.
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      КОЛ. ВЗЯТОГО
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      КОЛ. ОСТАТОК
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      КОЛ. ВОЗВРАТА
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      ДАТА
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      ДЕЙСТВИЕ
+                    </th>
+                    <th className="p-2 bg-secondary text-white" scope="col">
+                      ДЕЙСТВИЕ
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            {/* <div className="modal-body">
-              Show a second modal and hide this one with the button below.
+                </thead>
+                <tbody>
+                  {Medication.slice(0, listNumber).map((list, index) => (
+                    <tr key={list.id}>
+                      <th scope="row">{index + 1}</th>
+                      <td
+                        onClick={() => {
+                          setClickedItemName(list.name);
+                          handleToggleModal(1);
+                        }}
+                        className="text-primary"
+                      >
+                        {list.document}
+                      </td>
+                      <td className="text-primary">{list.document}</td>
+                      <td className="text-primary">{list.quantity}</td>
+                      <td>{list.ed_measurements}</td>
+                      <td>{list.stock}</td>
+                      <td>{list.qty_taken}</td>
+                      <td>{list["ed. meas. taken"]}</td>
+                      <td>
+                        <button className="btn btn-danger">
+                          {list["dist. status"]}
+                        </button>
+                      </td>
+                      <td>{list["code sp. m."]}</td>
+                      <td>
+                        {day}.{month}.{year}
+                      </td>
+                      <td className="d-flex gap-3 p-3">
+                        <img src={Eye} alt="" />
+                        <img src={Editor} alt="" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <div className="modal-footer">
-              <button
-                className="btn btn-primary"
-                data-bs-target="#exampleModalToggle2"
-                data-bs-toggle="modal"
-                data-bs-dismiss="modal"
-              >
-                Open second modal
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
@@ -155,7 +149,7 @@ function Prikhot() {
   }
   return (
     <>
-      <div className="shadow basic_2 shadow-lg bg-body rounded">
+      <div className="shadow basic_2 shadow-lg bg-body rounded ">
         <h3 className="text-center p-3 text-list">
           Список оприходованных медикаментов
         </h3>

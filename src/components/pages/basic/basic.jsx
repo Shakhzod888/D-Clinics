@@ -10,7 +10,7 @@ function Basic() {
   };
 
   return (
-    <div className="shadow basic shadow-lg bg-body rounded">
+    <div className="shadow basic shadow-lg bg-body rounded ">
       <ul
         className="nav tips d-flex nav-pills mb-3 justify-content-start "
         id="pills-tab"

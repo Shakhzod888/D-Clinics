@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "document": "C10001 ",
+    "quantity": "ООО “My Pharm”",
+    "ed_measurements": "5 лист / Коробка",
+    "stock": "A10001",
+    "qty_taken": 100,
+    "ed. meas. taken": 100,
+    "DIST. CODE": 0,
+    "dist. status": "Распаковано",
+    "code sp. m.": 0,
+    "data": 0,
+    "img": 0
+  },
+  {
+    "id": 1,
+    "document": "C10001 ",
+    "quantity": "ООО “My Pharm”",
+    "ed_measurements": "5 лист / Коробка",
+    "stock": "A10001",
+    "qty_taken": 100,
+    "ed. meas. taken": 100,
+    "DIST. CODE": 0,
+    "dist. status": "Распаковано",
+    "code sp. m.": 0,
+    "data": 0,
+    "img": 0
+  },
+  {
+    "id": 1,
+    "document": "C10001 ",
+    "quantity": "ООО “My Pharm”",
+    "ed_measurements": "5 лист / Коробка",
+    "stock": "A10001",
+    "qty_taken": 100,
+    "ed. meas. taken": 100,
+    "DIST. CODE": 0,
+    "dist. status": "Распаковано",
+    "code sp. m.": 0,
+    "data": 0,
+    "img": 0
+  }
+]
