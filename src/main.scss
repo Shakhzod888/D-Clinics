@@ -100,3 +100,18 @@ body {
 .bss {
   width: 900px;
 }
+
+.category_imges {
+  width: 25px;
+  padding-top: 2px;
+  text-align: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.paginator {
+  border: solid 2px #5a8dee !important;
+  color: #5a8dee !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.7px;
+}

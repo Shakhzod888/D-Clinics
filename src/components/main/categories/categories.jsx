@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import "../categories/categories.scss";
 import Basic from "../../pages/basic/basic";
+
+import BasicImg from "../mainBody/assets/main.png";
+import SkladImg from "../mainBody/assets/sklad.png";
+import Med from "../mainBody/assets/medi.png";
+import File from "../mainBody/assets/file.png";
+import Dilers from "../mainBody/assets/dilers.png";
+import Progress from "../mainBody/assets/progress.png";
+
 function Categories() {
   const [activeTab, setActiveTab] = useState("pills-home");
 
@@ -17,60 +25,68 @@ function Categories() {
       >
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link ${activeTab === "pills-home" ? "active" : ""}`}
+            className={`btn ${
+              activeTab === "pills-home" ? "btn-main" : ""
+            } d-flex gap-2 `}
             onClick={() => handleTabClick("pills-home")}
           >
-            Главная
+            <img className="category_imges" src={BasicImg} alt="" />
+            <span className="fw-500">Главная</span>
           </button>
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link ${
-              activeTab === "pills-stock" ? "active" : ""
-            }`}
+            className={`btn ${
+              activeTab === "pills-stock" ? "btn-main" : ""
+            } d-flex gap-2 `}
             onClick={() => handleTabClick("pills-stock")}
           >
-            Склады
+            <img className="category_imges" src={SkladImg} alt="" />
+            <span className="fw-500">Склады</span>
           </button>
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link ${
-              activeTab === "pills-pharmacy" ? "active" : ""
-            }`}
+            className={`btn ${
+              activeTab === "pills-pharmacy" ? "btn-main" : ""
+            } d-flex gap-2`}
             onClick={() => handleTabClick("pills-pharmacy")}
           >
-            Аптеки
+            <img className="category_imges" src={Med} alt="" />
+            <span className="fw-500">Аптеки</span>
           </button>
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link ${
-              activeTab === "pills-documentation" ? "active" : ""
-            }`}
+            className={`btn ${
+              activeTab === "pills-documentation" ? "btn-main" : ""
+            } d-flex gap-2 `}
             onClick={() => handleTabClick("pills-documentation")}
           >
-            Документы
+            <img className="category_imges" src={File} alt="" />
+            <span className="fw-500">Документы</span>
           </button>
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link ${
-              activeTab === "pills-dealers" ? "active" : ""
-            }`}
+            className={`btn ${
+              activeTab === "pills-dealers" ? "btn-main" : ""
+            } d-flex gap-2`}
             onClick={() => handleTabClick("pills-dealers")}
           >
-            Дилеры
+            <img className="category_imges" src={Dilers} alt="" />
+            <span className="fw-500">Дилеры</span>
           </button>
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className={`nav-link ${
-              activeTab === "pills-statistics" ? "active" : ""
-            }`}
+            className={`btn ${
+              activeTab === "pills-statistics" ? "btn-main" : ""
+            } d-flex gap-2`}
             onClick={() => handleTabClick("pills-statistics")}
           >
-            Статистика
+            <img className="category_imges" src={Progress} alt="" />
+            <span className="fw-500">Статистика</span>
           </button>
         </li>
       </ul>

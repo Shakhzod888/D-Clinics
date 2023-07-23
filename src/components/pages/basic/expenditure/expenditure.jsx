@@ -5,6 +5,9 @@ import Editor from "../assets/editer.png";
 import Lists from "../jsons/list.json";
 import Medication from "../jsons/medication.json";
 
+import ExportImg from "../assets/export.png";
+import ModalForExp from "./modalForExp/modalForExp.";
+
 function ExpenditureTab() {
   const date = new Date();
   const day = date.getDate();
@@ -47,62 +50,62 @@ function ExpenditureTab() {
     }
   };
 
-  function Modal({ name, showModal, handleToggleModal }) {
-    return (
-      <div
-        className={`modal fade ${showModal ? "show " : ""}  p-2 bg-opacity-50"`}
-        id="exampleModalToggle1"
-        aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel1"
-        tabIndex="-1"
-        style={{ display: showModal ? "block" : "none" }}
-      >
-        <div className="modal-dialog modal-dialog modal-xl modal-dialog-centered ">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button
-                type="button"
-                className="btn fs-5 btn-outline-danger "
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                onClick={() => handleToggleModal(1)}
-              >
-                x
-              </button>
-            </div>
+  // function Modal({ name, showModal, handleToggleModal }) {
+  //   return (
+  //     <div
+  //       className={`modal fade ${showModal ? "show " : ""}  p-2 bg-opacity-50"`}
+  //       id="exampleModalToggle1"
+  //       aria-hidden="true"
+  //       aria-labelledby="exampleModalToggleLabel1"
+  //       tabIndex="-1"
+  //       style={{ display: showModal ? "block" : "none" }}
+  //     >
+  //       <div className="modal-dialog modal-dialog modal-xl modal-dialog-centered ">
+  //         <div className="modal-content">
+  //           <div className="modal-header">
+  //             <button
+  //               type="button"
+  //               className="btn fs-5 btn-outline-danger "
+  //               data-bs-dismiss="modal"
+  //               aria-label="Close"
+  //               onClick={() => handleToggleModal(1)}
+  //             >
+  //               x
+  //             </button>
+  //           </div>
 
-            <div className="modal-dialog-centered shadow basic_4 shadow-lg bg-body d-flex flex-column ">
-              <p className="modal-title" id="exampleModalToggleLabel1">
-                {name}
-              </p>
+  //           <div className="modal-dialog-centered shadow basic_4 shadow-lg bg-body d-flex flex-column ">
+  //             <p className="modal-title" id="exampleModalToggleLabel1">
+  //               {name}
+  //             </p>
 
-              <div className="m-4"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  //             <div className="m-4"></div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
       <div className="shadow basic_2 shadow-lg bg-body rounded ">
-        <h3 className="text-center p-3 text-list">
+        <h3 className="text-center p-3 text-list text-muted fs-4">
           Список выданных медикаментов
         </h3>
         <div className="border border-right-0 p-3 pb-5 mt-5">
-          <p>Фильтр</p>
+          <p className="text-muted fs-5">Фильтр</p>
           <div className="d-flex flex-wrap gap-5">
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label "></label>
-              <select id="inputState" className="form-select sell ">
+              <select id="inputState" className="form-select sell text-muted">
                 <option defaultValue>Все препараты</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label "></label>
-              <select id="inputState" className="form-select sell ">
+              <select id="inputState" className="form-select sell text-muted">
                 <option defaultValue>Все склады</option>
                 <option>...</option>
               </select>
@@ -110,7 +113,7 @@ function ExpenditureTab() {
 
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label "></label>
-              <select id="inputState" className="form-select sell ">
+              <select id="inputState" className="form-select sell text-muted">
                 <option defaultValue>Все дилеры</option>
                 <option>...</option>
               </select>
@@ -118,21 +121,21 @@ function ExpenditureTab() {
 
             <div className="col-md-2">
               <label htmlFor="inputState" className="form-label"></label>
-              <select id="inputState" className="form-select">
+              <select id="inputState " className="form-select text-muted">
                 <option defaultValue>Все единицы измерения</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label"></label>
-              <select id="inputState" className="form-select">
+              <select id="inputState" className="form-select text-muted">
                 <option defaultValue>Все статусы</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label"></label>
-              <select id="inputState" className="form-select">
+              <select id="inputState" className="form-select text-muted">
                 <option defaultValue>Все контракты</option>
                 <option>...</option>
               </select>
@@ -141,7 +144,7 @@ function ExpenditureTab() {
         </div>
         <div className="ddl d-flex justify-content-between align-items-center ">
           <div className="d-flex justify-content-center gap-3 align-items-center flex-wrap">
-            <p className="align-items-center">Показать записи</p>
+            <p className="align-items-center text-muted">Показать записи</p>
             <input
               className="number"
               id="number"
@@ -154,54 +157,54 @@ function ExpenditureTab() {
             <input
               type="text"
               className="form-control"
-              placeholder="Поиск по НАИМЕНОВАНИЕ"
+              placeholder="Поиск"
               value={searchQuery}
               onChange={handleSearchChange}
             />
-            <button className="btn shadow btn-primary ">Экспорт</button>
-            <button className="btn shadow btn-primary w-100">
-              + Добавить приход
+            <button className="btn shadow btn-ex d-flex gap-3">
+              <img className="category_imges" src={ExportImg} alt="" />
+              Экспорт
             </button>
           </div>
         </div>
         <div className="m-4">
-          <table className="table  table-bordered">
+          <table className="table  table-bordered ">
             <thead>
               <tr>
-                <th className="p-2 bg-secondary text-white p-4" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   N
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  ДОКУМЕНТ
+                <th className="p-2 bg-main text-white" scope="col">
+                  НАИМЕНОВАНИЕ
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
+                  ДИЛЕР
+                </th>
+                <th className="p-2 bg-main text-white" scope="col">
+                  ДОГОВОР
+                </th>
+                <th className="p-2 bg-main text-white" scope="col">
+                  ЕД. ИЗМЕРЕНИЯ
+                </th>
+                <th className="p-2 bg-main text-white" scope="col">
                   КОЛИЧ.
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  ИЗМЕРЕНИЯ
+                <th className="p-2 bg-main text-white" scope="col">
+                  КОЛ. ВЗЯТОГО
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  СКЛАД
+                <th className="p-2 bg-main text-white" scope="col">
+                  КОЛ. ОСТАТОК
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  ВЗЯТ.
+                <th className="p-2 bg-main text-white" scope="col">
+                  КОЛ. ВОЗВРАТА
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  ИЗМ.ВЗЯТ.
-                </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  КОДРАСП.
-                </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  СТАТУС РАСП.
-                </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
-                  КОД.СП.М.
-                </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   ДАТА
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
+                  ДЕЙСТВИЕ
+                </th>
+                <th className="p-2 bg-main text-white" scope="col">
                   ДЕЙСТВИЕ
                 </th>
               </tr>
@@ -257,7 +260,7 @@ function ExpenditureTab() {
               aria-label="..."
               className="d-flex flex-wrap justify-content-around align-items-center"
             >
-              <p>
+              <p className="text-muted">
                 Показано от 1 до {listNumber} из {Lists.length} записей
               </p>
               <ul className="pagination d-flex gap-3">
@@ -267,7 +270,7 @@ function ExpenditureTab() {
                   }`}
                 >
                   <button
-                    className="page-link"
+                    className="btn btn-next"
                     onClick={() =>
                       handlePageChange(Math.ceil(listNumber / 10) - 1)
                     }
@@ -298,7 +301,7 @@ function ExpenditureTab() {
                   }`}
                 >
                   <button
-                    className="page-link"
+                    className="btn btn-next "
                     onClick={() =>
                       handlePageChange(Math.ceil(listNumber / 10) + 1)
                     }
@@ -309,7 +312,7 @@ function ExpenditureTab() {
               </ul>
             </nav>
           </div>
-          <Modal
+          <ModalForExp
             name={`Медикамент : ${clickedItemName}`}
             showModal={showModal1}
             handleToggleModal={() => handleToggleModal(1)}

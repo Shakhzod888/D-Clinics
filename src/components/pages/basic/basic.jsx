@@ -18,7 +18,9 @@ function Basic() {
       >
         <li className="nav-item" role="presentation">
           <button
-            className={`btn ${activeTab === "pills-home" ? "btn-main" : ""}`}
+            className={`btn ${
+              activeTab === "pills-home" ? "btn-main " : "paginator"
+            }`}
             onClick={() => handleTabClick("pills-home")}
           >
             Приход
@@ -26,7 +28,9 @@ function Basic() {
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className={`btn ${activeTab === "pills-stock" ? "btn-main" : ""}`}
+            className={`btn ${
+              activeTab === "pills-stock" ? "btn-main" : "paginator"
+            }`}
             onClick={() => handleTabClick("pills-stock")}
           >
             Расход

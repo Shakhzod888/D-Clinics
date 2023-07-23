@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEfect } from "react";
 import Eye from "../assets/eye.png";
-import Editor from "../assets/editer.png";
 import Lists from "../jsons/list.json";
-import Medication from "../jsons/medication.json";
+import ExportImg from "../assets/export.png";
 
 function Prikhot() {
   const date = new Date();
@@ -11,21 +10,25 @@ function Prikhot() {
   const year = date.getFullYear();
 
   const [listNumber, setListNumber] = useState(10);
-  const [listMedication, setlistMedication] = useState(3);
   const [searchQuery, setSearchQuery] = useState("");
   const [showModal1, setShowModal1] = useState(false);
   const [clickedItemName, setClickedItemName] = useState("");
-  const [secsess, setSacsess] = useState("danger");
+  const [nameChoose, setNameChoose] = useState("");
+  const [showDealer, setShowDealer] = useState("");
+  const [returned, setReturned] = useState("");
+  const [taken, setTaken] = useState("");
+  const [total, setTotal] = useState("");
+  const [remainder, setRemainderl] = useState("");
+  const [showContract, setShowContract] = useState("");
+  const [data, setData] = useState([]);
+  let UNPACKINGS = Math.floor(Math.random() * 10) + 1;
+  React.useEffect(() => {
+    setData(Lists);
+  }, []);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setListNumber(10);
-  };
-
-  const changeState = () => {
-    if (secsess) {
-      setSacsess("success");
-    }
   };
 
   const filteredLists = Lists.filter((list) =>
@@ -46,7 +49,18 @@ function Prikhot() {
     }
   };
 
-  function Modal({ name, showModal, handleToggleModal }) {
+  function Modal({
+    name,
+    nameChoose,
+    contract,
+    dealer,
+    showModal,
+    handleToggleModal,
+    total,
+    taken,
+    returned,
+    remainder,
+  }) {
     return (
       <div
         className={`modal fade ${
@@ -61,12 +75,15 @@ function Prikhot() {
         <div className="modal-dialog  modal-lg  modal-dialog-centered ">
           <div className="modal-content">
             <div className="modal-header">
-              <p className="modal-title" id="exampleModalToggleLabel1">
+              <p
+                className="modal-title fs-5 text-muted fw-bold"
+                id="exampleModalToggleLabel1"
+              >
                 {name}
               </p>
               <button
                 type="button"
-                className="btn fs-5  shadow fw-bold  danger"
+                className="btn fs-5  btn-outline-danger close shadow fw-bold "
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={() => handleToggleModal(1)}
@@ -76,47 +93,49 @@ function Prikhot() {
             </div>
 
             <div className="modal-dialog-centered shadow basic_5 shadow-lg bg-body d-flex flex-column ">
-              <div className="d-flex m-4 gap-2 bg-body">
+              <div className="d-flex gap-4 m-2 ">
                 <div class="col-md-4">
-                  <label for="inputState" class="form-label">
-                    State
+                  <label for="inputState" class="form-label text-muted fs-20">
+                    КОД ДОКУМЕНТА
                   </label>
                   <select
-                    class="form-select"
+                    class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>Open this select menu</option>
+                    <option selected>{contract}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <label for="inputState" class="form-label">
-                    State
+                  <label for="inputState" class="form-label text-muted fs-20">
+                    КОД
                   </label>
                   <select
-                    class="form-select"
+                    class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>Open this select menu</option>
+                    <option selected>{contract}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <label for="inputState" class="form-label">
-                    State
+                  <label for="inputState" class="form-label text-muted fs-20">
+                    ДИЛЕР
                   </label>
                   <select
-                    class="form-select"
+                    class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>Open this select menu</option>
+                    <option className="fs-1" selected>
+                      {dealer}
+                    </option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -128,141 +147,143 @@ function Prikhot() {
               <div className="d-flex gap-5">
                 <div className="d-flex flex-column flex-wrap gap-2  m-2">
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      Stateee
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      МЕДИКАМЕНТ
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>{nameChoose}</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      State
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      КОЛИЧЕСТВО
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>{total}</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      Statee
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      ЕДИНИЦА ИЗМЕРЕНИЯ
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>Капсула</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      State
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      ДАТА РЕГИСТРАЦИИ
                     </label>
                     <select
-                      class="form-select"
-                      aria-label="Disabled select example"
+                      class="form-select text-muted fs-20"
+                      aria-label="Disabled date example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>
+                        {day}-{month}-{year}
+                      </option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
                   <div className="d-flex gap-3 mt-4 justify-content-center align-items-center">
-                    <p className="fs-6 m-2">СТАТУС ОПЛАТЫ:</p>
+                    <p className="fs-6 m-2 text-muted fs-20">СТАТУС ОПЛАТЫ:</p>
                     <button className="btn btn-success">Оплачено</button>
                   </div>
                 </div>
                 <div className="d-flex flex-column gap-2 m-2">
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      State
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      СКЛАД
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>Главный</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      State
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      КОЛИЧЕСТВО ВЗЯТОГО
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>{taken}</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      State
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      КОЛИЧЕСТВО ВАЗВРАТА
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>{returned}</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>{" "}
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      State
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      КОЛИЧЕСТВО ОСТАТКА
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>{remainder}</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
                   <div class="col-md-10">
-                    <label for="inputState" class="form-label">
-                      State
+                    <label for="inputState" class="form-label text-muted fs-20">
+                      КОЛИЧЕСТВО РАСПАКОВКИ
                     </label>
                     <select
-                      class="form-select"
+                      class="form-select text-muted fs-20"
                       aria-label="Disabled select example"
                       disabled
                     >
-                      <option selected>Open this select menu</option>
+                      <option selected>{UNPACKINGS}</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
@@ -273,7 +294,7 @@ function Prikhot() {
             </div>
             <button
               type="button"
-              className="btn fs-5 btn-cancel shadow  close"
+              className="btn fs-5 btn-cancel shadow  close "
               data-bs-dismiss="modal"
               aria-label="Close"
               onClick={() => handleToggleModal(1)}
@@ -289,22 +310,22 @@ function Prikhot() {
   return (
     <>
       <div className="shadow basic_2 shadow-lg bg-body rounded ">
-        <h3 className="text-center p-3 text-list">
+        <h3 className="text-center p-3 text-list text-muted fs-4">
           Список оприходованных медикаментов
         </h3>
         <div className="border border-right-0 p-3 pb-5 mt-5">
-          <p>Фильтр</p>
+          <p className="text-muted fs-5">Фильтр</p>
           <div className="d-flex flex-wrap gap-5">
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label "></label>
-              <select id="inputState" className="form-select sell ">
+              <select id="inputState" className="form-select sell text-muted">
                 <option defaultValue>Все препараты</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label "></label>
-              <select id="inputState" className="form-select sell ">
+              <select id="inputState" className="form-select sell text-muted">
                 <option defaultValue>Все склады</option>
                 <option>...</option>
               </select>
@@ -312,7 +333,7 @@ function Prikhot() {
 
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label "></label>
-              <select id="inputState" className="form-select sell ">
+              <select id="inputState" className="form-select sell text-muted">
                 <option defaultValue>Все дилеры</option>
                 <option>...</option>
               </select>
@@ -320,21 +341,21 @@ function Prikhot() {
 
             <div className="col-md-2">
               <label htmlFor="inputState" className="form-label"></label>
-              <select id="inputState" className="form-select">
+              <select id="inputState " className="form-select text-muted">
                 <option defaultValue>Все единицы измерения</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label"></label>
-              <select id="inputState" className="form-select">
+              <select id="inputState" className="form-select text-muted">
                 <option defaultValue>Все статусы</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
               <label htmlFor="inputState" className="form-label"></label>
-              <select id="inputState" className="form-select">
+              <select id="inputState" className="form-select text-muted">
                 <option defaultValue>Все контракты</option>
                 <option>...</option>
               </select>
@@ -343,7 +364,7 @@ function Prikhot() {
         </div>
         <div className="ddl d-flex justify-content-between align-items-center ">
           <div className="d-flex justify-content-center gap-3 align-items-center flex-wrap">
-            <p className="align-items-center">Показать записи</p>
+            <p className="align-items-center text-muted">Показать записи</p>
             <input
               className="number"
               id="number"
@@ -356,12 +377,15 @@ function Prikhot() {
             <input
               type="text"
               className="form-control"
-              placeholder="Поиск по НАИМЕНОВАНИЕ"
+              placeholder="Поиск"
               value={searchQuery}
               onChange={handleSearchChange}
             />
-            <button className="btn shadow btn-primary ">Экспорт</button>
-            <button className="btn shadow btn-primary w-100">
+            <button className="btn shadow btn-ex d-flex gap-3">
+              <img className="category_imges" src={ExportImg} alt="" />
+              Экспорт
+            </button>
+            <button className="btn shadow btn-primary w-100 btn-main">
               + Добавить приход
             </button>
           </div>
@@ -370,37 +394,37 @@ function Prikhot() {
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   N
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   НАИМЕНОВАНИЕ
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   ДИЛЕР
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   ДОГОВОР
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   ЕД. ИЗМЕРЕНИЯ
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   КОЛИЧ.
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   КОЛ. ВЗЯТОГО
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   КОЛ. ОСТАТОК
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   КОЛ. ВОЗВРАТА
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   ДАТА
                 </th>
-                <th className="p-2 bg-secondary text-white" scope="col">
+                <th className="p-2 bg-main text-white" scope="col">
                   ДЕЙСТВИЕ
                 </th>
               </tr>
@@ -412,6 +436,13 @@ function Prikhot() {
                   <td
                     onClick={() => {
                       setClickedItemName(list.name);
+                      setShowDealer(list.dealer);
+                      setShowContract(list.contract);
+                      setNameChoose(list.name);
+                      setTotal(list.quantity);
+                      setTaken(list.qty_taken);
+                      setReturned(list.qty_return);
+                      setRemainderl(list.qty_remainder);
                       handleToggleModal(1);
                     }}
                     className="text-primary cursore"
@@ -431,6 +462,13 @@ function Prikhot() {
                   <td
                     onClick={() => {
                       setClickedItemName(list.name);
+                      setShowDealer(list.dealer);
+                      setShowContract(list.contract);
+                      setNameChoose(list.name);
+                      setTotal(list.quantity);
+                      setTaken(list.qty_taken);
+                      setReturned(list.qty_return);
+                      setRemainderl(list.qty_remainder);
                       handleToggleModal(1);
                     }}
                   >
@@ -445,7 +483,7 @@ function Prikhot() {
               aria-label="..."
               className="d-flex flex-wrap justify-content-around align-items-center"
             >
-              <p>
+              <p className="text-muted">
                 Показано от 1 до {listNumber} из {Lists.length} записей
               </p>
               <ul className="pagination d-flex gap-3">
@@ -455,7 +493,7 @@ function Prikhot() {
                   }`}
                 >
                   <button
-                    className="page-link"
+                    className="btn btn-next"
                     onClick={() =>
                       handlePageChange(Math.ceil(listNumber / 10) - 1)
                     }
@@ -486,7 +524,7 @@ function Prikhot() {
                   }`}
                 >
                   <button
-                    className="page-link"
+                    className="btn btn-next"
                     onClick={() =>
                       handlePageChange(Math.ceil(listNumber / 10) + 1)
                     }
@@ -499,8 +537,15 @@ function Prikhot() {
           </div>
 
           <Modal
-            name={`Медикамент : ${clickedItemName}`}
+            name={`Оприходование медикамента :${clickedItemName}`}
+            contract={showContract}
+            nameChoose={nameChoose}
+            dealer={showDealer}
             showModal={showModal1}
+            total={total}
+            taken={taken}
+            remainder={remainder}
+            returned={returned}
             handleToggleModal={() => handleToggleModal(1)}
           />
         </div>
