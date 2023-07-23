@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "document": "A10002",
+    "kolich": 100,
+    "izmereniya": "5 лист / Коробка  ",
+    "sklad": "Главный",
+    "kol_vzyat": 70,
+    "izm_vzyat": "5 лист / Коробка ",
+    "kod_rasp": "UI10020",
+    "status": "Отдано",
+    "kod_rasp_m": "DL1009 "
+  },
+  {
+    "id": 1,
+    "document": "C10001",
+    "kolich": 100,
+    "izmereniya": "5 лист / Коробка  ",
+    "sklad": "Главный",
+    "kol_vzyat": 70,
+    "izm_vzyat": "5 лист / Коробка ",
+    "kod_rasp": "UI10020",
+    "status": "Отказано",
+    "kod_rasp_m": "DL1009 "
+  },
+  {
+    "id": 1,
+    "document": "C10001",
+    "kolich": 100,
+    "izmereniya": "5 лист / Коробка  ",
+    "sklad": "Главный",
+    "kol_vzyat": 70,
+    "izm_vzyat": "5 лист / Коробка ",
+    "kod_rasp": "UI10020",
+    "status": "Отдано",
+    "kod_rasp_m": "DL1009 "
+  }
+]

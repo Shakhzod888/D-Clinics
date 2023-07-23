@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 import Eye from "../assets/eye.png";
 import Editor from "../assets/editer.png";
-import Lists from "../jsons/list.json";
+import Lists from "../jsons/listExpenditure.json";
 import Medication from "../jsons/medication.json";
 
 import ExportImg from "../assets/export.png";
 import ModalForExp from "./modalForExp/modalForExp.";
+import ModalForPrikhot from "../clinicsArrival/modalForPrikhot/modalForPrikhot";
+import ModalForRead from "../modals/modalForRead";
 
 function ExpenditureTab() {
   const date = new Date();
@@ -15,11 +17,11 @@ function ExpenditureTab() {
   const year = date.getFullYear();
 
   const [listNumber, setListNumber] = useState(10);
-  const [listMedication, setlistMedication] = useState(3);
   const [searchQuery, setSearchQuery] = useState("");
   const [showModal1, setShowModal1] = useState(false);
   const [clickedItemName, setClickedItemName] = useState("");
   const [secsess, setSacsess] = useState("danger");
+  const [clickedId, setClickedId] = useState("");
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -50,42 +52,7 @@ function ExpenditureTab() {
     }
   };
 
-  // function Modal({ name, showModal, handleToggleModal }) {
-  //   return (
-  //     <div
-  //       className={`modal fade ${showModal ? "show " : ""}  p-2 bg-opacity-50"`}
-  //       id="exampleModalToggle1"
-  //       aria-hidden="true"
-  //       aria-labelledby="exampleModalToggleLabel1"
-  //       tabIndex="-1"
-  //       style={{ display: showModal ? "block" : "none" }}
-  //     >
-  //       <div className="modal-dialog modal-dialog modal-xl modal-dialog-centered ">
-  //         <div className="modal-content">
-  //           <div className="modal-header">
-  //             <button
-  //               type="button"
-  //               className="btn fs-5 btn-outline-danger "
-  //               data-bs-dismiss="modal"
-  //               aria-label="Close"
-  //               onClick={() => handleToggleModal(1)}
-  //             >
-  //               x
-  //             </button>
-  //           </div>
-
-  //           <div className="modal-dialog-centered shadow basic_4 shadow-lg bg-body d-flex flex-column ">
-  //             <p className="modal-title" id="exampleModalToggleLabel1">
-  //               {name}
-  //             </p>
-
-  //             <div className="m-4"></div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  console.log(clickedId);
 
   return (
     <>
@@ -172,31 +139,31 @@ function ExpenditureTab() {
             <thead>
               <tr>
                 <th className="p-2 bg-main text-white" scope="col">
-                  N
+                  №
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
                   НАИМЕНОВАНИЕ
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
-                  ДИЛЕР
+                  Склад
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
-                  ДОГОВОР
+                  Аптека
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
                   ЕД. ИЗМЕРЕНИЯ
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
-                  КОЛИЧ.
+                  КОЛИЧЕСТВО
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
                   КОЛ. ВЗЯТОГО
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
-                  КОЛ. ОСТАТОК
+                  ОБ ОСТАТОК
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
-                  КОЛ. ВОЗВРАТА
+                  СТАТУС
                 </th>
                 <th className="p-2 bg-main text-white" scope="col">
                   ДАТА
@@ -204,47 +171,51 @@ function ExpenditureTab() {
                 <th className="p-2 bg-main text-white" scope="col">
                   ДЕЙСТВИЕ
                 </th>
-                <th className="p-2 bg-main text-white" scope="col">
-                  ДЕЙСТВИЕ
-                </th>
               </tr>
             </thead>
             <tbody>
-              {Medication.slice(0, listNumber).map((list, index) => (
+              {Lists.slice(0, listNumber).map((list, index) => (
                 <tr key={list.id}>
-                  <th scope="row">{index + 1}</th>
+                  <th className="df-text" scope="row">
+                    {index + 1}
+                  </th>
                   <td
                     onClick={() => {
                       setClickedItemName(list.name);
+                      setClickedId(list.apteka);
                       handleToggleModal(1);
                     }}
-                    className="text-primary"
+                    className="text-primary "
                   >
-                    {list.document}
+                    {list.name}
                   </td>
-                  <td className="text-primary">{list.document}</td>
-                  <td className="text-primary">{list.quantity}</td>
-                  <td>{list.ed_measurements}</td>
-                  <td>{list.stock}</td>
-                  <td>{list.qty_taken}</td>
-                  <td>{list["ed. meas. taken"]}</td>
+                  <td className="text-primary">{list.sklad}</td>
+                  <td className="text-primary">{list.apteka}</td>
+                  <td className="df-text">{list.izmereniya}</td>
+                  <td className="df-text">{list.kolichestvo}</td>
+                  <td className="df-text">{list.vzyatovo}</td>
+                  <td className="df-text">{list.obstatok}</td>
                   <td>
                     <button
-                      className={`btn btn-${secsess}`}
-                      onClick={changeState}
+                      className={`btn btn-status ${
+                        list.status === "Отдано"
+                          ? "btn-success"
+                          : list.status === "Отказано"
+                          ? "btn-danger"
+                          : "btn-warning"
+                      }`}
                     >
-                      {list["dist. status"]}
+                      {list.status}
                     </button>
                   </td>
-                  <td>{list["code sp. m."]}</td>
                   <td>
                     {day}.{month}.{year}
                   </td>
                   <td className="d-flex gap-3 p-3">
                     <img
                       onClick={() => {
-                        setClickedItemName(list.name);
-                        handleToggleModal(1);
+                        console.log("cliked");
+                        // <ModalForRead showModal={showModal1} />;
                       }}
                       src={Eye}
                       alt=""
@@ -316,6 +287,7 @@ function ExpenditureTab() {
             name={`Медикамент : ${clickedItemName}`}
             showModal={showModal1}
             handleToggleModal={() => handleToggleModal(1)}
+            clickedId={clickedId}
           />
         </div>
       </div>

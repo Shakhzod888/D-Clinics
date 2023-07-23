@@ -25,10 +25,11 @@ body {
 }
 
 .basic_4 {
-  display: block;
+  display: flex !important;
+  flex-wrap: wrap !important;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
+  margin-top: -40px !important;
   width: 86%;
   height: auto;
   margin-bottom: 20px;
@@ -71,15 +72,16 @@ body {
 
 .ddl {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around !important;
   flex-wrap: wrap;
+  gap: 100px !important;
   position: relative;
   top: 20px;
   padding: 20px;
-  gap: 200px;
+  gap: 450px !important;
   p {
     position: relative;
-    top: 6px;
+    top: 6px !important;
   }
 
   .number {
