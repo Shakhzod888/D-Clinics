@@ -10,9 +10,7 @@ function ModalForExp({ name, showModal, handleToggleModal, clickedId }) {
 
   const [listNumber, setListNumber] = useState(3);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showModal1, setShowModal1] = useState(false);
   const [clickedItemName, setClickedItemName] = useState("");
-  const [secsess, setSacsess] = useState("danger");
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);

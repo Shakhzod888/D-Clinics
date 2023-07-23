@@ -6,6 +6,7 @@ import Lists from "../jsons/listExpenditure.json";
 import ExportImg from "../assets/export.png";
 import ModalForExp from "./modalForExp/modalForExp.";
 import ModalForRead from "../modals/modalForRead";
+import ModalForEdit from "../modals/editInfo";
 
 function ExpenditureTab() {
   const date = new Date();
@@ -21,6 +22,7 @@ function ExpenditureTab() {
   const [clickedId, setClickedId] = useState("");
   const [showModalExp, setShowModalExp] = useState(false);
   const [showModalRead, setShowModalRead] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
 
   const [nameChoose, setNameChoose] = useState("");
   const [status, setStatus] = useState("");
@@ -245,7 +247,26 @@ function ExpenditureTab() {
                       src={Eye}
                       alt=""
                     />
-                    <img src={Editor} alt="" />
+                    <img
+                      onClick={() => {
+                        setClickedItemName(list.name);
+                        setShowDealer(list.dealer);
+                        setShowContract(list.contract);
+                        setNameChoose(list.name);
+                        setTotal(list.quantity);
+                        setTaken(list.qty_taken);
+                        setReturned(list.qty_return);
+                        setRemainderl(list.qty_remainder);
+                        setShowModalEdit(true);
+                        setSklad(list.sklad);
+                        setKolijistvo(list.kolichestvo);
+                        setIzmereniya(list.izmereniya);
+                        setVzyatovo(list.vzyatovo);
+                        setStatus(list.status);
+                      }}
+                      src={Editor}
+                      alt=""
+                    />
                   </td>
                 </tr>
               ))}
@@ -310,9 +331,30 @@ function ExpenditureTab() {
           </div>
           {showModalExp && (
             <ModalForExp
-              name={`Медикамент : ${clickedId}`}
+              name={`Медикамент : ${clickedItemName}`}
+              clickedId={clickedId}
               showModal={showModalExp}
               handleToggleModal={() => setShowModalExp(false)}
+            />
+          )}
+
+          {showModalEdit && (
+            <ModalForEdit
+              name={`${clickedItemName}`}
+              contract={showContract}
+              nameChoose={nameChoose}
+              dealer={showDealer}
+              showModal={showModalEdit}
+              total={total}
+              taken={taken}
+              remainder={remainder}
+              returned={returned}
+              handleToggleModal={() => setShowModalEdit(false)}
+              sklad={sklad}
+              kolijistvo={kolijistvo}
+              izmereniya={izmereniya}
+              vzyatovo={vzyatovo}
+              status={status}
             />
           )}
 
