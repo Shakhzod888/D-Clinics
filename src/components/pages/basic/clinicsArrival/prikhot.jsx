@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Eye from "../assets/eye.png";
 import Editor from "../assets/editer.png";
-import Lists from "../list.json";
-import Medication from "../medication.json";
+import Lists from "../jsons/list.json";
+import Medication from "../jsons/medication.json";
 
 function Prikhot() {
   const date = new Date();
@@ -11,13 +11,21 @@ function Prikhot() {
   const year = date.getFullYear();
 
   const [listNumber, setListNumber] = useState(10);
+  const [listMedication, setlistMedication] = useState(3);
   const [searchQuery, setSearchQuery] = useState("");
   const [showModal1, setShowModal1] = useState(false);
   const [clickedItemName, setClickedItemName] = useState("");
+  const [secsess, setSacsess] = useState("danger");
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setListNumber(10);
+  };
+
+  const changeState = () => {
+    if (secsess) {
+      setSacsess("success");
+    }
   };
 
   const filteredLists = Lists.filter((list) =>
@@ -41,14 +49,16 @@ function Prikhot() {
   function Modal({ name, showModal, handleToggleModal }) {
     return (
       <div
-        className={`modal fade ${showModal ? "show" : ""}`}
+        className={`modal fade ${
+          showModal ? "show " : ""
+        }  p-2  bg-opacity-50"`}
         id="exampleModalToggle1"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel1"
         tabIndex="-1"
         style={{ display: showModal ? "block" : "none" }}
       >
-        <div className="modal-dialog modal-dialog modal-xl modal-dialog-centered ">
+        <div className="modal-dialog  modal-lg  modal-dialog-centered ">
           <div className="modal-content">
             <div className="modal-header">
               <p className="modal-title" id="exampleModalToggleLabel1">
@@ -56,97 +66,226 @@ function Prikhot() {
               </p>
               <button
                 type="button"
-                className="btn-close"
+                className="btn fs-5  shadow fw-bold  danger"
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={() => handleToggleModal(1)}
-              ></button>
+              >
+                x
+              </button>
             </div>
 
-            <div className="modal-dialog-centered shadow basic_4 shadow-lg bg-body ">
-              <table className="table m-4 table-bordered">
-                <thead>
-                  <tr>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      N
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      НАИМЕНОВАНИЕ
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      ДИЛЕР
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      ДОГОВОР
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      ЕД. ИЗМЕРЕНИЯ
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      КОЛИЧ.
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      КОЛ. ВЗЯТОГО
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      КОЛ. ОСТАТОК
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      КОЛ. ВОЗВРАТА
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      ДАТА
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      ДЕЙСТВИЕ
-                    </th>
-                    <th className="p-2 bg-secondary text-white" scope="col">
-                      ДЕЙСТВИЕ
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Medication.slice(0, listNumber).map((list, index) => (
-                    <tr key={list.id}>
-                      <th scope="row">{index + 1}</th>
-                      <td
-                        onClick={() => {
-                          setClickedItemName(list.name);
-                          handleToggleModal(1);
-                        }}
-                        className="text-primary"
-                      >
-                        {list.document}
-                      </td>
-                      <td className="text-primary">{list.document}</td>
-                      <td className="text-primary">{list.quantity}</td>
-                      <td>{list.ed_measurements}</td>
-                      <td>{list.stock}</td>
-                      <td>{list.qty_taken}</td>
-                      <td>{list["ed. meas. taken"]}</td>
-                      <td>
-                        <button className="btn btn-danger">
-                          {list["dist. status"]}
-                        </button>
-                      </td>
-                      <td>{list["code sp. m."]}</td>
-                      <td>
-                        {day}.{month}.{year}
-                      </td>
-                      <td className="d-flex gap-3 p-3">
-                        <img src={Eye} alt="" />
-                        <img src={Editor} alt="" />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="modal-dialog-centered shadow basic_5 shadow-lg bg-body d-flex flex-column ">
+              <div className="d-flex m-4 gap-2 bg-body">
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">
+                    State
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Disabled select example"
+                    disabled
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">
+                    State
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Disabled select example"
+                    disabled
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">
+                    State
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Disabled select example"
+                    disabled
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
             </div>
+            <div className="modal-dialog-centered shadow basic_4 shadow-lg bg-body d-flex flex-column ">
+              <div className="d-flex gap-5">
+                <div className="d-flex flex-column flex-wrap gap-2  m-2">
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      Stateee
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      State
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      Statee
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      State
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div className="d-flex gap-3 mt-4 justify-content-center align-items-center">
+                    <p className="fs-6 m-2">СТАТУС ОПЛАТЫ:</p>
+                    <button className="btn btn-success">Оплачено</button>
+                  </div>
+                </div>
+                <div className="d-flex flex-column gap-2 m-2">
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      State
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      State
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      State
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>{" "}
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      State
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-10">
+                    <label for="inputState" class="form-label">
+                      State
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Disabled select example"
+                      disabled
+                    >
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              type="button"
+              className="btn fs-5 btn-cancel shadow  close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onClick={() => handleToggleModal(1)}
+            >
+              Отмена
+            </button>
           </div>
         </div>
       </div>
     );
   }
+
   return (
     <>
       <div className="shadow basic_2 shadow-lg bg-body rounded ">
@@ -157,46 +296,46 @@ function Prikhot() {
           <p>Фильтр</p>
           <div className="d-flex flex-wrap gap-5">
             <div className="col-md-1.5">
-              <label for="inputState" className="form-label "></label>
+              <label htmlFor="inputState" className="form-label "></label>
               <select id="inputState" className="form-select sell ">
-                <option selected>Все препараты</option>
+                <option defaultValue>Все препараты</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
-              <label for="inputState" className="form-label "></label>
+              <label htmlFor="inputState" className="form-label "></label>
               <select id="inputState" className="form-select sell ">
-                <option selected>Все склады</option>
+                <option defaultValue>Все склады</option>
                 <option>...</option>
               </select>
             </div>
 
             <div className="col-md-1.5">
-              <label for="inputState" className="form-label "></label>
+              <label htmlFor="inputState" className="form-label "></label>
               <select id="inputState" className="form-select sell ">
-                <option selected>Все дилеры</option>
+                <option defaultValue>Все дилеры</option>
                 <option>...</option>
               </select>
             </div>
 
             <div className="col-md-2">
-              <label for="inputState" className="form-label"></label>
+              <label htmlFor="inputState" className="form-label"></label>
               <select id="inputState" className="form-select">
-                <option selected>Все единицы измерения</option>
+                <option defaultValue>Все единицы измерения</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
-              <label for="inputState" className="form-label"></label>
+              <label htmlFor="inputState" className="form-label"></label>
               <select id="inputState" className="form-select">
-                <option selected>Все статусы</option>
+                <option defaultValue>Все статусы</option>
                 <option>...</option>
               </select>
             </div>
             <div className="col-md-1.5">
-              <label for="inputState" className="form-label"></label>
+              <label htmlFor="inputState" className="form-label"></label>
               <select id="inputState" className="form-select">
-                <option selected>Все  контракты</option>
+                <option defaultValue>Все контракты</option>
                 <option>...</option>
               </select>
             </div>
@@ -275,7 +414,7 @@ function Prikhot() {
                       setClickedItemName(list.name);
                       handleToggleModal(1);
                     }}
-                    className="text-primary"
+                    className="text-primary cursore"
                   >
                     {list.name}
                   </td>
@@ -289,8 +428,13 @@ function Prikhot() {
                   <td>
                     {day}.{month}.{year}
                   </td>
-                  <td>
-                    <img src={Eye} alt="" />
+                  <td
+                    onClick={() => {
+                      setClickedItemName(list.name);
+                      handleToggleModal(1);
+                    }}
+                  >
+                    <img className="cursore" src={Eye} alt="" />
                   </td>
                 </tr>
               ))}

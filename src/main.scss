@@ -29,10 +29,21 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-  width: 96%;
-  height: 400px;
-  margin: 30px;
-  margin-bottom: 80px;
+  width: 86%;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+.basic_5 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 86%;
+  height: auto;
+  margin-top: 30px;
 }
 
 .basic_3 {
@@ -41,8 +52,10 @@ body {
   margin-right: auto;
   margin-top: 40px;
   width: 96%;
-  height: 500px;
+  height: auto;
+  margin-bottom: 50px;
 }
+
 .basic_2 {
   display: block;
   margin-left: auto;
@@ -57,11 +70,13 @@ body {
 }
 
 .ddl {
-  // padding: 20px 20px 0 20px;
+  display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
   position: relative;
-  top: 40px;
+  top: 20px;
   padding: 20px;
+  gap: 200px;
   p {
     position: relative;
     top: 6px;
@@ -76,4 +91,12 @@ body {
     border: none;
     border: solid 1px #d4d8dd;
   }
+}
+
+.cursore {
+  cursor: pointer;
+}
+
+.bss {
+  width: 900px;
 }
