@@ -1,22 +1,27 @@
 import React from "react";
 
-function ModalForRead({
-  //   name,
-  //   nameChoose,
-  //   contract,
-  //   dealer,
+function ModalForPrikhot({
+  name,
+  nameChoose,
+  contract,
+  dealer,
   showModal,
-  //   handleToggleModal,
-  //   total,
-  //   taken,
-  //   returned,
-  //   remainder,
+  handleToggleModal,
+  total,
+  taken,
+  returned,
+  remainder,
+  sklad,
+  kolijistvo,
+  izmereniya,
+  vzyatovo,
+  status,
 }) {
-  //   const date = new Date();
-  //   const day = date.getDate();
-  //   const month = date.getMonth() + 1;
-  //   const year = date.getFullYear();
-  //   let UNPACKINGS = Math.floor(Math.random() * 10) + 1;
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  let UNPACKINGS = Math.floor(Math.random() * 10) + 1;
   return (
     <div
       className={`modal fade ${showModal ? "show " : ""}  p-2  bg-opacity-50"`}
@@ -26,7 +31,7 @@ function ModalForRead({
       tabIndex="-1"
       style={{ display: showModal ? "block" : "none" }}
     >
-      {/* <div className="modal-dialog  modal-lg  modal-dialog-centered ">
+      <div className="modal-dialog  modal-lg  modal-dialog-centered ">
         <div className="modal-content">
           <div className="modal-header">
             <p
@@ -48,48 +53,16 @@ function ModalForRead({
 
           <div className="modal-dialog-centered shadow basic_5 shadow-lg bg-body d-flex flex-column ">
             <div className="d-flex gap-4 m-2 ">
-              <div class="col-md-4">
+              <div class="col-md-4 info">
                 <label for="inputState" class="form-label text-muted fs-20">
-                  КОД ДОКУМЕНТА
+                  МЕДИКАМЕНТ
                 </label>
                 <select
                   class="form-select text-muted fs-20"
                   aria-label="Disabled select example"
                   disabled
                 >
-                  <option selected>{contract}</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label for="inputState" class="form-label text-muted fs-20">
-                  КОД
-                </label>
-                <select
-                  class="form-select text-muted fs-20"
-                  aria-label="Disabled select example"
-                  disabled
-                >
-                  <option selected>{contract}</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label for="inputState" class="form-label text-muted fs-20">
-                  ДИЛЕР
-                </label>
-                <select
-                  class="form-select text-muted fs-20"
-                  aria-label="Disabled select example"
-                  disabled
-                >
-                  <option className="fs-1" selected>
-                    {dealer}
-                  </option>
+                  <option selected>{name}</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
@@ -102,14 +75,14 @@ function ModalForRead({
               <div className="d-flex flex-column flex-wrap gap-2  m-2">
                 <div class="col-md-10">
                   <label for="inputState" class="form-label text-muted fs-20">
-                    МЕДИКАМЕНТ
+                    СКЛАД
                   </label>
                   <select
                     class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>{nameChoose}</option>
+                    <option selected>{sklad}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -124,7 +97,7 @@ function ModalForRead({
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>{total}</option>
+                    <option selected>{kolijistvo}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -139,7 +112,7 @@ function ModalForRead({
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>Капсула</option>
+                    <option selected>{izmereniya}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -164,20 +137,30 @@ function ModalForRead({
                 </div>
                 <div className="d-flex gap-3 mt-4 justify-content-center align-items-center">
                   <p className="fs-6 m-2 text-muted fs-20">СТАТУС ОПЛАТЫ:</p>
-                  <button className="btn btn-success">Оплачено</button>
+                  <button
+                    className={`btn btn-status ${
+                      status === "Отдано"
+                        ? "btn-success"
+                        : status === "Отказано"
+                        ? "btn-danger"
+                        : "btn-warning"
+                    }`}
+                  >
+                    {status}
+                  </button>
                 </div>
               </div>
               <div className="d-flex flex-column gap-2 m-2">
                 <div class="col-md-10">
                   <label for="inputState" class="form-label text-muted fs-20">
-                    СКЛАД
+                    Аптека
                   </label>
                   <select
                     class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>Главный</option>
+                    <option selected>Стационар</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -192,7 +175,7 @@ function ModalForRead({
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>{taken}</option>
+                    <option selected>{vzyatovo}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -200,14 +183,14 @@ function ModalForRead({
                 </div>
                 <div class="col-md-10">
                   <label for="inputState" class="form-label text-muted fs-20">
-                    КОЛИЧЕСТВО ВАЗВРАТА
+                    ЕДИНИЦА ИЗМЕРЕНИЯ ВЗЯТОГО
                   </label>
                   <select
                     class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>{returned}</option>
+                    <option selected>{izmereniya}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -215,29 +198,16 @@ function ModalForRead({
                 </div>{" "}
                 <div class="col-md-10">
                   <label for="inputState" class="form-label text-muted fs-20">
-                    КОЛИЧЕСТВО ОСТАТКА
+                    ДАТА ВЗЯТИЯ
                   </label>
                   <select
                     class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                     disabled
                   >
-                    <option selected>{remainder}</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </div>
-                <div class="col-md-10">
-                  <label for="inputState" class="form-label text-muted fs-20">
-                    КОЛИЧЕСТВО РАСПАКОВКИ
-                  </label>
-                  <select
-                    class="form-select text-muted fs-20"
-                    aria-label="Disabled select example"
-                    disabled
-                  >
-                    <option selected>{UNPACKINGS}</option>
+                    <option selected>
+                      {day - 2} - {month} - {year}
+                    </option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -256,9 +226,9 @@ function ModalForRead({
             Отмена
           </button>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
 
-export default ModalForRead;
+export default ModalForPrikhot;

@@ -3,11 +3,8 @@ import React, { useState } from "react";
 import Eye from "../assets/eye.png";
 import Editor from "../assets/editer.png";
 import Lists from "../jsons/listExpenditure.json";
-import Medication from "../jsons/medication.json";
-
 import ExportImg from "../assets/export.png";
 import ModalForExp from "./modalForExp/modalForExp.";
-import ModalForPrikhot from "../clinicsArrival/modalForPrikhot/modalForPrikhot";
 import ModalForRead from "../modals/modalForRead";
 
 function ExpenditureTab() {
@@ -22,16 +19,29 @@ function ExpenditureTab() {
   const [clickedItemName, setClickedItemName] = useState("");
   const [secsess, setSacsess] = useState("danger");
   const [clickedId, setClickedId] = useState("");
+  const [showModalExp, setShowModalExp] = useState(false);
+  const [showModalRead, setShowModalRead] = useState(false);
+
+  const [nameChoose, setNameChoose] = useState("");
+  const [status, setStatus] = useState("");
+  const [showDealer, setShowDealer] = useState("");
+  const [returned, setReturned] = useState("");
+  const [taken, setTaken] = useState("");
+  const [total, setTotal] = useState("");
+  const [remainder, setRemainderl] = useState("");
+  const [showContract, setShowContract] = useState("");
+  const [sklad, setSklad] = useState("");
+  const [kolijistvo, setKolijistvo] = useState("");
+  const [izmereniya, setIzmereniya] = useState("");
+  const [vzyatovo, setVzyatovo] = useState("");
+  const [data, setData] = useState([]);
+  React.useEffect(() => {
+    setData(Lists);
+  }, []);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setListNumber(10);
-  };
-
-  const changeState = () => {
-    if (secsess) {
-      setSacsess("success");
-    }
   };
 
   const filteredLists = Lists.filter((list) =>
@@ -51,7 +61,6 @@ function ExpenditureTab() {
       setShowModal1(!showModal1);
     }
   };
-
   console.log(clickedId);
 
   return (
@@ -132,6 +141,9 @@ function ExpenditureTab() {
               <img className="category_imges" src={ExportImg} alt="" />
               Экспорт
             </button>
+            <button className="btn shadow btn-primary w-100 btn-main">
+              + Добавить приход
+            </button>
           </div>
         </div>
         <div className="m-4">
@@ -183,7 +195,7 @@ function ExpenditureTab() {
                     onClick={() => {
                       setClickedItemName(list.name);
                       setClickedId(list.apteka);
-                      handleToggleModal(1);
+                      setShowModalExp(true); // Open ModalForExp
                     }}
                     className="text-primary "
                   >
@@ -213,9 +225,22 @@ function ExpenditureTab() {
                   </td>
                   <td className="d-flex gap-3 p-3">
                     <img
+                      className="cursore"
                       onClick={() => {
-                        console.log("cliked");
-                        // <ModalForRead showModal={showModal1} />;
+                        setClickedItemName(list.name);
+                        setShowDealer(list.dealer);
+                        setShowContract(list.contract);
+                        setNameChoose(list.name);
+                        setTotal(list.quantity);
+                        setTaken(list.qty_taken);
+                        setReturned(list.qty_return);
+                        setRemainderl(list.qty_remainder);
+                        setShowModalRead(true);
+                        setSklad(list.sklad);
+                        setKolijistvo(list.kolichestvo);
+                        setIzmereniya(list.izmereniya);
+                        setVzyatovo(list.vzyatovo);
+                        setStatus(list.status);
                       }}
                       src={Eye}
                       alt=""
@@ -283,12 +308,33 @@ function ExpenditureTab() {
               </ul>
             </nav>
           </div>
-          <ModalForExp
-            name={`Медикамент : ${clickedItemName}`}
-            showModal={showModal1}
-            handleToggleModal={() => handleToggleModal(1)}
-            clickedId={clickedId}
-          />
+          {showModalExp && (
+            <ModalForExp
+              name={`Медикамент : ${clickedId}`}
+              showModal={showModalExp}
+              handleToggleModal={() => setShowModalExp(false)}
+            />
+          )}
+
+          {showModalRead && (
+            <ModalForRead
+              name={`${clickedItemName}`}
+              contract={showContract}
+              nameChoose={nameChoose}
+              dealer={showDealer}
+              showModal={showModalRead}
+              total={total}
+              taken={taken}
+              remainder={remainder}
+              returned={returned}
+              handleToggleModal={() => setShowModalRead(false)}
+              sklad={sklad}
+              kolijistvo={kolijistvo}
+              izmereniya={izmereniya}
+              vzyatovo={vzyatovo}
+              status={status}
+            />
+          )}
         </div>
       </div>
     </>

@@ -26,7 +26,20 @@ body {
 
 .basic_4 {
   display: flex !important;
-  flex-wrap: wrap !important;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 86%;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+.basic_8 {
+  display: flex !important;
+  flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto;
   margin-top: -40px !important;

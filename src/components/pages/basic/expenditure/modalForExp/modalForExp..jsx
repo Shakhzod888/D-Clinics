@@ -41,7 +41,7 @@ function ModalForExp({ name, showModal, handleToggleModal, clickedId }) {
             </button>
           </div>
 
-          <div className="modal-dialog-centered shadow basic_4 shadow-lg bg-body">
+          <div className="modal-dialog-centered shadow basic_8 shadow-lg bg-body">
             <div className="m-4">
               <p className="text-center text-list text-muted fs-5">{name}</p>
               <div className="d-flex flex-column">
