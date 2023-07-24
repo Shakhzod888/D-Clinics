@@ -2,15 +2,8 @@ import React from "react";
 
 function ModalForEdit({
   name,
-  nameChoose,
-  contract,
-  dealer,
   showModal,
   handleToggleModal,
-  total,
-  taken,
-  returned,
-  remainder,
   sklad,
   kolijistvo,
   izmereniya,
@@ -103,18 +96,17 @@ function ModalForEdit({
                   <label for="inputState" class="form-label text-muted fs-20">
                     ДАТА РЕГИСТРАЦИИ
                   </label>
-                  <select
-                    class="form-select text-muted fs-20"
-                    aria-label="Disabled date example"
-                    disabled
-                  >
-                    <option selected>
-                      {day}-{month}-{year}
-                    </option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
+                  <div class="input-group date" data-provide="datepicker">
+                    <input
+                      type="date"
+                      class="form-control text-muted "
+                      disabled
+                      value="1990-08-15"
+                    />
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                  </div>
                 </div>
                 <div className="d-flex gap-3 mt-4 justify-content-center align-items-center">
                   <p className="fs-6 m-2 text-muted fs-20">СТАТУС ОПЛАТЫ:</p>
@@ -151,21 +143,18 @@ function ModalForEdit({
                   <label for="inputState" class="form-label text-muted fs-20">
                     КОЛИЧЕСТВО ВЗЯТОГО
                   </label>
-                  <select
-                    class="form-select text-muted fs-20"
-                    aria-label="Disabled select example"
-                  >
-                    <option selected>{vzyatovo}</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
+                  <input
+                    defaultValue={vzyatovo}
+                    type="number"
+                    id="typeNumber"
+                    class="form-control"
+                  />
                 </div>
                 <div class="col-md-10">
                   <label for="inputState" class="form-label text-muted fs-20">
                     ЕДИНИЦА ИЗМЕРЕНИЯ ВЗЯТОГО
                   </label>
-                  <select
+                  {/* <select
                     class="form-select text-muted fs-20"
                     aria-label="Disabled select example"
                   >
@@ -173,7 +162,15 @@ function ModalForEdit({
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
-                  </select>
+                  </select> */}
+                  <div class="form-outline text-muted fs-20">
+                    <input
+                      defaultValue={vzyatovo}
+                      type="number"
+                      id="typeNumber"
+                      class="form-control"
+                    />
+                  </div>
                 </div>{" "}
                 <div class="col-md-10">
                   <label for="inputState" class="form-label text-muted fs-20">

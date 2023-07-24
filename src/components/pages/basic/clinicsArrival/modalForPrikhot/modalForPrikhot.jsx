@@ -42,7 +42,7 @@ function ModalForPrikhot({
               aria-label="Close"
               onClick={() => handleToggleModal(1)}
             >
-              x
+              X
             </button>
           </div>
 

@@ -8,6 +8,8 @@ import Med from "../mainBody/assets/medi.png";
 import File from "../mainBody/assets/file.png";
 import Dilers from "../mainBody/assets/dilers.png";
 import Progress from "../mainBody/assets/progress.png";
+import Sklad from "../../pages/sklad/sklad";
+import ListSklad from "../../pages/sklad/listSklad/listSklad";
 
 function Categories() {
   const [activeTab, setActiveTab] = useState("pills-home");
@@ -110,7 +112,7 @@ function Categories() {
           role="tabpanel"
           aria-labelledby="pills-stock-tab"
         >
-          ... Склады ...
+          <ListSklad />
         </div>
         <div
           className={`tab-pane fade ${
