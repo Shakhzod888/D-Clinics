@@ -32,7 +32,7 @@ function Prikhot() {
     setListNumber(10);
   };
 
-  const filteredLists = Lists.filter((list) =>
+  const filteredLists = data.filter((list) =>
     list.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -173,7 +173,7 @@ function Prikhot() {
               </tr>
             </thead>
             <tbody>
-              {Lists.slice(0, listNumber).map((list, index) => (
+              {filteredLists.slice(0, listNumber).map((list, index) => (
                 <tr key={list.id}>
                   <th scope="row">{index + 1}</th>
                   <td
@@ -194,12 +194,12 @@ function Prikhot() {
                   </td>
                   <td className="text-primary">{list.dealer}</td>
                   <td className="text-primary">{list.contract}</td>
-                  <td>{list.ed_measurements}</td>
-                  <td>{list.quantity}</td>
-                  <td>{list.qty_taken}</td>
-                  <td>{list.qty_remainder}</td>
-                  <td>{list.qty_return}</td>
-                  <td>
+                  <td className="df-text">{list.ed_measurements}</td>
+                  <td className="df-text">{list.quantity}</td>
+                  <td className="df-text">{list.qty_taken}</td>
+                  <td className="df-text">{list.qty_remainder}</td>
+                  <td className="df-text">{list.qty_return}</td>
+                  <td className="df-text">
                     {day}.{month}.{year}
                   </td>
                   <td

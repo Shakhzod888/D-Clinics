@@ -41,6 +41,11 @@ function ExpenditureTab() {
     setData(Lists);
   }, []);
 
+  const handleToggleModal = (modalNumber) => {
+    if (modalNumber === 1) {
+      setShowModal1(!showModal1);
+    }
+  };
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setListNumber(10);
@@ -57,13 +62,6 @@ function ExpenditureTab() {
     const startIndex = (page - 1) * 10;
     setListNumber(startIndex + 10);
   };
-
-  const handleToggleModal = (modalNumber) => {
-    if (modalNumber === 1) {
-      setShowModal1(!showModal1);
-    }
-  };
-  console.log(clickedId);
 
   return (
     <>
@@ -188,7 +186,7 @@ function ExpenditureTab() {
               </tr>
             </thead>
             <tbody>
-              {Lists.slice(0, listNumber).map((list, index) => (
+              {filteredLists.slice(0, listNumber).map((list, index) => (
                 <tr key={list.id}>
                   <th className="df-text" scope="row">
                     {index + 1}
@@ -197,7 +195,7 @@ function ExpenditureTab() {
                     onClick={() => {
                       setClickedItemName(list.name);
                       setClickedId(list.apteka);
-                      setShowModalExp(true); // Open ModalForExp
+                      setShowModalExp(true);
                     }}
                     className="text-primary "
                   >
